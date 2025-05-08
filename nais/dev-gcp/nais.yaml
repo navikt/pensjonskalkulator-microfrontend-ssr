@@ -1,0 +1,37 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: tms-microfrontend-template-ssr
+  namespace: min-side
+  labels:
+    team: min-side
+spec:
+  tokenx:
+    enabled: true
+  image: {{ image }}
+  port: 3000
+  liveness:
+    path: /tms-microfrontend-template-ssr/api/internal/isAlive
+    initialDelay: 10
+  readiness:
+    path: /tms-microfrontend-template-ssr/api/internal/isReady
+    initialDelay: 10
+  replicas:
+    min: 2
+    max: 4
+  accessPolicy:
+    inbound:
+      rules:
+        - application: tms-min-side
+  ingresses:
+    - "https://www.intern.dev.nav.no/tms-microfrontend-template-ssr"
+    - "https://www.ansatt.dev.nav.no/tms-microfrontend-template-ssr"
+  resources:
+    limits:
+      memory: 768Mi
+    requests:
+      cpu: "20m"
+      memory: 128Mi
+  env:
+    - name: EXAMPLE_API_URL
+      value: "https://example.dev.nav.no/api"
