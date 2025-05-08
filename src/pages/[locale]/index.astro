@@ -1,5 +1,4 @@
 ---
-import pino from "pino-http";
 import { Heading, BodyShort } from "@navikt/ds-react";
 import { text } from "@src/language/text";
 import ClientIsland from "@src/components/ClientIsland";
@@ -7,34 +6,15 @@ import type { Language } from "@src/types";
 import styles from "@src/styles/index.module.css";
 import "@src/styles/aksel.css";
 
-let isError: boolean = false;
-const logger = pino().logger;
-const exampleApiUrl = import.meta.env.EXAMPLE_API_URL;
-
-const exampleData: any = await fetch(exampleApiUrl)
-  .then((response) => response.json())
-  .then((data) => data)
-  .catch((error) => {
-    logger.error("Error fetching example data:", error);
-    Astro.response.status = 503;
-    isError = true;
-  });
 
 const language = Astro.currentLocale as Language;
 ---
 
-{
-  isError ? null : (
-    <section class="tms-microfrontend-template-ssr">
-      <div class={styles.microfrontend}>
-        <Heading size="medium" level="2">
-          {text.title[language]}
-        </Heading>
-        <BodyShort>
-          {text.name[language]}: {exampleData.name}
-        </BodyShort>
-        <ClientIsland client:only="react" />
-      </div>
-    </section>
-  )
-}
+<section class="tms-microfrontend-template-ssr">
+  <div class={styles.microfrontend}>
+    <Heading size="medium" level="2">
+      {text.title[language]}
+    </Heading>
+    <ClientIsland client:only="react" />
+  </div>
+</section>

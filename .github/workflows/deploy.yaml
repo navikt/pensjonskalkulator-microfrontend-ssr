@@ -36,15 +36,15 @@ jobs:
       - name: "Upload to cdn"
         uses: nais/deploy/actions/cdn-upload/v2@master
         with:
-          team: min-side
+          team: pensjonskalkulator
           source: ./dist/client/_astro
-          destination: 'tms-microfrontend-template-ssr'
+          destination: 'pensjonskalkulator-microfrontend-ssr'
 
       - name: "Build and push"
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
-          team: min-side
+          team: pensjonskalkulator
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
@@ -55,10 +55,10 @@ jobs:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
-      id: "tms-microfrontend-template-ssr"
-      url: "http://tms-microfrontend-template-ssr/tms-microfrontend-template-ssr"
-      appname: "tms-microfrontend-template-ssr"
-      namespace: "min-side"
+      id: "pensjonskalkulator-microfrontend"
+      url: "http://pensjonskalkulator-microfrontend-ssr/pensjonskalkulator-microfrontend-ssr"
+      appname: "pensjonskalkulator-microfrontend-ssr"
+      namespace: "pensjonskalkulator"
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
       ssr: true
@@ -69,10 +69,10 @@ jobs:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
-      id: "tms-microfrontend-template-ssr-id"
-      url: "http://tms-microfrontend-template-ssr/tms-microfrontend-template-ssr"
-      name: "tms-microfrontend-template-ssr"
-      namespace: "team-namespace"
+      id: "pensjonskalkulator-microfrontend"
+      url: "http://pensjonskalkulator-microfrontend-ssr/pensjonskalkulator-microfrontend-ssr"
+      name: "pensjonskalkulator-microfrontend-ssr"
+      namespace: "pensjonskalkulator"
       cluster: prod-gcp
       commitmsg: ${{ github.event.head_commit.message}}
       ssr: true
