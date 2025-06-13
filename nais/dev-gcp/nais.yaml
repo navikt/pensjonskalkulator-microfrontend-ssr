@@ -23,6 +23,7 @@ spec:
     inbound:
       rules:
         - application: tms-min-side
+          namespace: min-side
   ingresses:
     - "https://www.intern.dev.nav.no/pensjonskalkulator-microfrontend-ssr"
     - "https://www.ansatt.dev.nav.no/pensjonskalkulator-microfrontend-ssr"
