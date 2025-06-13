@@ -61,22 +61,24 @@ jobs:
       namespace: "pensjonskalkulator"
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
+      fallback: "http://pensjonskalkulator-microfrontend-ssr/fallback"
       ssr: true
     secrets: inherit
 
-  update-manifest-prod-gcp:
-    if: github.ref == 'refs/heads/main'
-    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
-    needs: build
-    with:
-      id: "pensjonskalkulator-microfrontend"
-      url: "http://pensjonskalkulator-microfrontend-ssr/pensjonskalkulator-microfrontend-ssr"
-      name: "pensjonskalkulator-microfrontend-ssr"
-      namespace: "pensjonskalkulator"
-      cluster: prod-gcp
-      commitmsg: ${{ github.event.head_commit.message}}
-      ssr: true
-    secrets: inherit
+#  update-manifest-prod-gcp:
+#    if: github.ref == 'refs/heads/main'
+#    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
+#    needs: build
+#    with:
+#      id: "pensjonskalkulator-microfrontend"
+#      url: "http://pensjonskalkulator-microfrontend-ssr/pensjonskalkulator-microfrontend-ssr"
+#      name: "pensjonskalkulator-microfrontend-ssr"
+#      namespace: "pensjonskalkulator"
+#      cluster: prod-gcp
+#      commitmsg: ${{ github.event.head_commit.message}}
+#      fallback: "http://pensjonskalkulator-microfrontend-ssr/fallback"
+#      ssr: true
+#    secrets: inherit
 
   deploy-dev:
     runs-on: "ubuntu-latest"
@@ -98,23 +100,23 @@ jobs:
           RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
           VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
 
-  deploy-prod:
-    if: github.ref == 'refs/heads/main'
-    runs-on: "ubuntu-latest"
-    permissions:
-      contents: "read"
-      id-token: "write"
-    needs:
-      - build
-      - update-manifest-prod-gcp
-    strategy:
-      matrix:
-        cluster: [ prod-gcp ]
-    steps:
-      - uses: "actions/checkout@v4"
-      - name: "Deploy to prod"
-        uses: "nais/deploy/actions/deploy@v2"
-        env:
-          CLUSTER: ${{ matrix.cluster }}
-          RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
-          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}          
+#  deploy-prod:
+#    if: github.ref == 'refs/heads/main'
+#    runs-on: "ubuntu-latest"
+#    permissions:
+#      contents: "read"
+#      id-token: "write"
+#    needs:
+#      - build
+#      - update-manifest-prod-gcp
+#    strategy:
+#      matrix:
+#        cluster: [ prod-gcp ]
+#    steps:
+#      - uses: "actions/checkout@v4"
+#      - name: "Deploy to prod"
+#        uses: "nais/deploy/actions/deploy@v2"
+#        env:
+#          CLUSTER: ${{ matrix.cluster }}
+#          RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
+#          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
