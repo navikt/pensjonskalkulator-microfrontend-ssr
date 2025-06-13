@@ -36,15 +36,15 @@ jobs:
       - name: "Upload to cdn"
         uses: nais/deploy/actions/cdn-upload/v2@master
         with:
-          team: min-side
+          team: pensjonskalkulator
           source: ./dist/client/_astro
-          destination: 'tms-microfrontend-template-ssr'
+          destination: 'pensjonskalkulator-microfrontend-ssr'
 
       - name: "Build and push"
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
-          team: min-side
+          team: pensjonskalkulator
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
@@ -55,28 +55,30 @@ jobs:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
-      id: "tms-microfrontend-template-ssr"
-      url: "http://tms-microfrontend-template-ssr/tms-microfrontend-template-ssr"
-      appname: "tms-microfrontend-template-ssr"
-      namespace: "min-side"
+      id: "pensjonskalkulator-microfrontend"
+      url: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator/pensjonskalkulator-microfrontend-ssr"
+      appname: "pensjonskalkulator-microfrontend-ssr"
+      namespace: "pensjonskalkulator"
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
+      fallback: "http://pensjonskalkulator-microfrontend-ssr/fallback"
       ssr: true
     secrets: inherit
 
-  update-manifest-prod-gcp:
-    if: github.ref == 'refs/heads/main'
-    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
-    needs: build
-    with:
-      id: "tms-microfrontend-template-ssr-id"
-      url: "http://tms-microfrontend-template-ssr/tms-microfrontend-template-ssr"
-      name: "tms-microfrontend-template-ssr"
-      namespace: "team-namespace"
-      cluster: prod-gcp
-      commitmsg: ${{ github.event.head_commit.message}}
-      ssr: true
-    secrets: inherit
+#  update-manifest-prod-gcp:
+#    if: github.ref == 'refs/heads/main'
+#    uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
+#    needs: build
+#    with:
+#      id: "pensjonskalkulator-microfrontend"
+#      url: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator/pensjonskalkulator-microfrontend-ssr"
+#      appname: "pensjonskalkulator-microfrontend-ssr"
+#      namespace: "pensjonskalkulator"
+#      cluster: prod-gcp
+#      commitmsg: ${{ github.event.head_commit.message}}
+#      fallback: "http://pensjonskalkulator-microfrontend-ssr/fallback"
+#      ssr: true
+#    secrets: inherit
 
   deploy-dev:
     runs-on: "ubuntu-latest"
@@ -98,23 +100,23 @@ jobs:
           RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
           VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
 
-  deploy-prod:
-    if: github.ref == 'refs/heads/main'
-    runs-on: "ubuntu-latest"
-    permissions:
-      contents: "read"
-      id-token: "write"
-    needs:
-      - build
-      - update-manifest-prod-gcp
-    strategy:
-      matrix:
-        cluster: [ prod-gcp ]
-    steps:
-      - uses: "actions/checkout@v4"
-      - name: "Deploy to prod"
-        uses: "nais/deploy/actions/deploy@v2"
-        env:
-          CLUSTER: ${{ matrix.cluster }}
-          RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
-          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}          
+#  deploy-prod:
+#    if: github.ref == 'refs/heads/main'
+#    runs-on: "ubuntu-latest"
+#    permissions:
+#      contents: "read"
+#      id-token: "write"
+#    needs:
+#      - build
+#      - update-manifest-prod-gcp
+#    strategy:
+#      matrix:
+#        cluster: [ prod-gcp ]
+#    steps:
+#      - uses: "actions/checkout@v4"
+#      - name: "Deploy to prod"
+#        uses: "nais/deploy/actions/deploy@v2"
+#        env:
+#          CLUSTER: ${{ matrix.cluster }}
+#          RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
+#          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
