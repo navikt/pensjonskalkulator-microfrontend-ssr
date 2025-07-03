@@ -61,7 +61,7 @@ jobs:
       namespace: "pensjonskalkulator"
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
-      fallback: "http://pensjonskalkulator-microfrontend-ssr/fallback"
+      fallback: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator/pensjonskalkulator-microfrontend-ssr"
       ssr: true
     secrets: inherit
 
@@ -76,7 +76,7 @@ jobs:
 #      namespace: "pensjonskalkulator"
 #      cluster: prod-gcp
 #      commitmsg: ${{ github.event.head_commit.message}}
-#      fallback: "http://pensjonskalkulator-microfrontend-ssr/fallback"
+#      fallback: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator/pensjonskalkulator-microfrontend-ssr"
 #      ssr: true
 #    secrets: inherit
 
