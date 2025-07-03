@@ -7,7 +7,6 @@ import prefixer from "postcss-prefix-selector";
 
 // https://astro.build/config
 export default defineConfig({
-  base: "/pensjonskalkulator-microfrontend-ssr/",
   build: {
     assetsPrefix: "https://cdn.nav.no/min-side/tms-microfrontend-test",
   },
