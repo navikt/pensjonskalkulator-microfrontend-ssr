@@ -54,12 +54,12 @@ jobs:
     needs: build
     with:
       id: "pensjonskalkulator-microfrontend"
-      url: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator/pensjonskalkulator-microfrontend-ssr"
+      url: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator"
       appname: "pensjonskalkulator-microfrontend-ssr"
       namespace: "pensjonskalkulator"
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
-      fallback: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator/pensjonskalkulator-microfrontend-ssr"
+      fallback: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator"
       ssr: true
     secrets: inherit
 
@@ -69,12 +69,12 @@ jobs:
 #    needs: build
 #    with:
 #      id: "pensjonskalkulator-microfrontend"
-#      url: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator/pensjonskalkulator-microfrontend-ssr"
+#      url: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator"
 #      appname: "pensjonskalkulator-microfrontend-ssr"
 #      namespace: "pensjonskalkulator"
 #      cluster: prod-gcp
 #      commitmsg: ${{ github.event.head_commit.message}}
-#      fallback: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator/pensjonskalkulator-microfrontend-ssr"
+#      fallback: "http://pensjonskalkulator-microfrontend-ssr.pensjonskalkulator"
 #      ssr: true
 #    secrets: inherit
 
