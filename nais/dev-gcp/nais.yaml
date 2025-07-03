@@ -11,10 +11,10 @@ spec:
   image: {{ image }}
   port: 3000
   liveness:
-    path: /pensjonskalkulator-microfrontend-ssr/api/internal/isAlive
+    path: /api/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /pensjonskalkulator-microfrontend-ssr/api/internal/isReady
+    path: /api/internal/isReady
     initialDelay: 10
   replicas:
     min: 2
@@ -24,9 +24,6 @@ spec:
       rules:
         - application: tms-min-side
           namespace: min-side
-  ingresses:
-    - "https://www.intern.dev.nav.no/pensjonskalkulator-microfrontend-ssr"
-    - "https://www.ansatt.dev.nav.no/pensjonskalkulator-microfrontend-ssr"
   resources:
     limits:
       memory: 768Mi
