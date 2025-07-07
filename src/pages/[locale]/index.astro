@@ -1,17 +1,25 @@
 ---
-import { Heading } from "@navikt/ds-react";
+import { Heading, BodyLong } from "@navikt/ds-react";
+import { ChevronRightIcon } from "@navikt/aksel-icons";
 import { text } from "@src/language/text";
 import type { Language } from "@src/types";
 import styles from "@src/styles/index.module.css";
 import "@src/styles/aksel.css";
+import { isLocal } from "../../utils/environment";
 
 const language = Astro.currentLocale as Language;
 ---
-
-<section class="tms-microfrontend-template-ssr">
-  <div class={styles.microfrontend}>
-    <Heading size="medium" level="2">
-      {text.title[language]}
-    </Heading>
-  </div>
-</section>
+{isLocal && (<head><meta charset="UTF-8"></head>)}
+<div class="pensjonskalkulator-microfrontend-ssr">
+  <a class={styles.container} href="https://www.nav.no/pensjon/kalkulator/login">
+    <div>
+      <Heading size="small" level="2">
+        {text.title[language]}
+      </Heading>
+      <BodyLong size="medium">
+        {text.ingress[language]}
+      </BodyLong>
+    </div>
+    <ChevronRightIcon className={styles.chevron} aria-hidden="true" fontSize="24px" />
+  </a>
+</div>

@@ -1,5 +1,36 @@
-.microfrontend {
-  border: gray dashed;
-  padding: 2rem;
-  margin: 2rem;
+.container {
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--a-shadow-xsmall);
+  width: 100%;
+  color: #272727 !important;
+  text-decoration: none;
+  background-color: var(--a-surface-alt-3-subtle, #cce2f0) !important;
+  border-radius: 0.75rem;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: var(--a-surface-alt-3-moderate, #99c4dd);
+  box-shadow: var(--a-shadow-small);
+}
+
+.container:hover .chevron {
+  transition-duration: 0.2s;
+  transform: translate(3px, 0);
+}
+
+.container:hover h2 {
+  text-decoration: underline;
+}
+
+.container:focus {
+  box-shadow: var(--a-shadow-focus);
+  outline: none;
+}
+
+.chevron {
+  flex-shrink: 0;
 }
