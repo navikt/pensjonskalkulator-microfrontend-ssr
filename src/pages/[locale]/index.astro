@@ -9,7 +9,14 @@ import { isLocal } from "../../utils/environment";
 
 const language = Astro.currentLocale as Language;
 ---
-{isLocal && (<head><meta charset="UTF-8"></head>)}
+
+{
+  isLocal && (
+    <head>
+      <meta charset="UTF-8" />
+    </head>
+  )
+}
 <div class="pensjonskalkulator-microfrontend-ssr">
   <a class={styles.container} href="https://www.nav.no/pensjon/kalkulator/login">
     <div>
