@@ -5,18 +5,9 @@ import { text } from "@src/language/text";
 import type { Language } from "@src/types";
 import styles from "@src/styles/index.module.css";
 import "@src/styles/aksel.css";
-import { isLocal } from "../../utils/environment";
 
 const language = Astro.currentLocale as Language;
 ---
-
-{
-  isLocal && (
-    <head>
-      <meta charset="UTF-8" />
-    </head>
-  )
-}
 <div class="pensjonskalkulator-microfrontend-ssr">
   <a class={styles.container} href="https://www.nav.no/pensjon/kalkulator/login">
     <div>
