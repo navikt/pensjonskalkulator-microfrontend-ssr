@@ -17,7 +17,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/node": "^9.0.0",
     "@astrojs/react": "^4.1.2",
-    "@navikt/aksel-icons": "6.1.1",
+    "@navikt/aksel-icons": "^6.1.1",
     "@navikt/ds-css": "6.16.2",
     "@navikt/ds-react": "6.16.2",
     "@navikt/oasis": "^3.4.0",

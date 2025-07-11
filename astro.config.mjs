@@ -9,6 +9,7 @@ import prefixer from "postcss-prefix-selector";
 export default defineConfig({
   build: {
     assetsPrefix: "https://cdn.nav.no/pensjonskalkulator/pensjonskalkulator-microfrontend-ssr",
+    inlineStylesheets: "never",
   },
   vite: {
     css: {

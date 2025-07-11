@@ -1,12 +1,12 @@
 export const text = {
   title: {
-    nb: "Pensjonskalkulator (nb)",
-    en: "Pensjonskalkulator (en)",
-    nn: "Pensjonskalkulator (nn)",
+    nb: "Pensjonskalkulator",
+    nn: "Pensjonskalkulator",
+    en: "Pensjonskalkulator",
   },
-  name: {
-    nb: "Navn",
-    en: "Name",
-    nn: "Navn",
+  ingress: {
+    nb: "Sjekk vår pensjonskalkulator for å se hvor mye du kan få i pensjon.",
+    nn: "Sjekk vår pensjonskalkulator for å se hvor mye du kan få i pensjon.",
+    en: "Sjekk vår pensjonskalkulator for å se hvor mye du kan få i pensjon.",
   },
 };
