@@ -6,15 +6,14 @@
   width: 100%;
   color: #272727;
   text-decoration: none;
-  box-shadow: var(--a-shadow-xsmall);
-  background-color: var(--a-surface-alt-3-subtle, #cce2f0);
+  background-color: var(--a-surface-alt-3-subtle);
   border-radius: 0.75rem;
 }
 
 .container:hover {
   cursor: pointer;
   box-shadow: var(--a-shadow-small);
-  background-color: var(--a-surface-alt-3-moderate, #99c4dd);
+  background-color: var(--a-surface-alt-3-moderate);
 }
 
 .container:hover .chevron {
