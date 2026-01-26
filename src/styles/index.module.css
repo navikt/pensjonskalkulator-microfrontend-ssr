@@ -21,7 +21,7 @@
   transform: translate(3px, 0);
 }
 
-.container:hover h2 {
+.container:hover h3 {
   text-decoration: underline;
 }
 
