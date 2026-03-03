@@ -35,12 +35,15 @@ jobs:
         env:
           ASTRO_KEY: ${{ secrets.ASTRO_KEY }}
 
+      - name: "Remove devDependencies"
+        run: "npm prune --omit=dev"
+
       - name: "Upload to cdn"
         uses: nais/deploy/actions/cdn-upload/v2@master
         with:
           team: pensjonskalkulator
           source: ./dist/client/_astro
-          destination: 'pensjonskalkulator-microfrontend-ssr'
+          destination: "pensjonskalkulator-microfrontend-ssr"
 
       - name: "Build and push"
         uses: nais/docker-build-push@v0
@@ -90,7 +93,7 @@ jobs:
       - update-manifest-dev-gcp
     strategy:
       matrix:
-        cluster: [ dev-gcp ]
+        cluster: [dev-gcp]
     steps:
       - uses: "actions/checkout@v4"
       - name: "Deploy to dev"
@@ -111,7 +114,7 @@ jobs:
       - update-manifest-prod-gcp
     strategy:
       matrix:
-        cluster: [ prod-gcp ]
+        cluster: [prod-gcp]
     steps:
       - uses: "actions/checkout@v4"
       - name: "Deploy to prod"
