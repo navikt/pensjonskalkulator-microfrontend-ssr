@@ -3,6 +3,10 @@
 Mikrofrontend for Min side som viser et kort med lenke til Navs pensjonskalkulator.
 Appen leverer serverrendret HTML.
 
+Kortet bruker egen CSS i [templates/style.css](templates/style.css), uten avhengighet til Aksel CSS eller
+Min sides Aksel-versjon. Stilene er avgrenset til mikrofrontenden. Skrifttypen lastes fra Navs CDN.
+Visuelle endringer vedlikeholdes i denne appen.
+
 ## Kjøre appen lokalt
 
 Bruk Node.js 22.13 eller nyere og pnpm 10.28.2.

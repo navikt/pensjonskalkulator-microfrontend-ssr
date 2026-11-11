@@ -72,3 +72,15 @@ test("HEAD returns headers only, unknown routes return 404, and POST returns 405
 test("template values are HTML escaped", () => {
   assert.equal(escapeHtml(`<&>"'`), "&lt;&amp;&gt;&quot;&#39;");
 });
+
+test("locale fragments use standalone card styles without Aksel classes or tokens", () => {
+  for (const html of Object.values(pages).map((page) => page.toString())) {
+    assert.doesNotMatch(html, /navds-|var\(--a-|@layer aksel/);
+    assert.match(html, /class="pensjonskalkulator-card"/);
+    assert.match(html, /class="pensjonskalkulator-heading"/);
+    assert.match(html, /class="pensjonskalkulator-description"/);
+    assert.match(html, /\.pensjonskalkulator-microfrontend-ssr \.pensjonskalkulator-card:focus\s*\{/);
+    assert.match(html, /@media \(prefers-reduced-motion: reduce\)/);
+    assert.match(html, /@media \(forced-colors: active\)/);
+  }
+});

@@ -15,11 +15,8 @@
     "prettier": "prettier --write 'src/**/*.ts' 'templates/*.{html,css}' 'scripts/*.js' 'test/*.js'"
   },
   "devDependencies": {
-    "@navikt/ds-css": "6.16.2",
     "@types/node": "24.1.0",
     "eslint": "^10.14.0",
-    "postcss": "^8.5.14",
-    "postcss-prefix-selector": "^2.1.1",
     "prettier": "3.3.3",
     "typescript": "5.3.3"
   }

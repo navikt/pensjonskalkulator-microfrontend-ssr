@@ -1,4 +1,21 @@
-.container {
+@font-face {
+  font-family: "Pensjonskalkulator Source Sans";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("https://cdn.nav.no/aksel/fonts/SourceSans3-normal.woff2") format("woff2");
+}
+
+.pensjonskalkulator-microfrontend-ssr {
+  font-family: "Pensjonskalkulator Source Sans", "Source Sans 3", "Source Sans Pro", Arial, sans-serif;
+}
+
+.pensjonskalkulator-microfrontend-ssr,
+.pensjonskalkulator-microfrontend-ssr * {
+  box-sizing: border-box;
+}
+
+.pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-card {
   padding: 1.25rem;
   display: flex;
   align-items: center;
@@ -6,32 +23,67 @@
   width: 100%;
   color: #272727;
   text-decoration: none;
-  background-color: var(--a-surface-alt-3-subtle);
+  background-color: #cce2f0;
   border-radius: 0.75rem;
 }
 
-.container:hover {
-  cursor: pointer;
-  box-shadow: var(--a-shadow-small);
-  background-color: var(--a-surface-alt-3-moderate);
+.pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-heading {
+  margin: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.001em;
+  line-height: 1.75rem;
 }
 
-.container:hover .chevron {
+.pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-description {
+  margin: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.75rem;
+}
+
+.pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-card:hover {
+  box-shadow:
+    0 3px 8px 0 rgb(0 0 0 / 10%),
+    0 1px 3px 0 rgb(0 0 0 / 10%),
+    0 0 1px 0 rgb(0 0 0 / 18%);
+  background-color: #99c4dd;
+}
+
+.pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-card:hover .pensjonskalkulator-chevron {
   transition-duration: 0.2s;
   transform: translate(3px, 0);
 }
 
-.container:hover h3 {
+.pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-card:hover .pensjonskalkulator-heading {
   text-decoration: underline;
 }
 
-.container:focus {
-  box-shadow: var(--a-shadow-focus);
+.pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-card:focus {
+  box-shadow: 0 0 0 3px #00347d;
   outline: none;
 }
 
-.chevron {
+.pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-chevron {
   flex-shrink: 0;
   width: 1.5rem;
   height: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-card:hover .pensjonskalkulator-chevron {
+    transition-duration: 0s;
+  }
+}
+
+@media (forced-colors: active) {
+  .pensjonskalkulator-microfrontend-ssr .pensjonskalkulator-card:focus {
+    outline: 3px solid Highlight;
+    outline-offset: 3px;
+  }
 }
