@@ -26,7 +26,4 @@ jspm_packages/
 # MacOS files
 .DS_Store
 
-# Astro files
-.astro/
-
 todos.txt
