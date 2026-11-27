@@ -18,9 +18,9 @@ jobs:
       packages: "write"
 
     steps:
-      - uses: "actions/checkout@v4"
-      - uses: "pnpm/action-setup@v4"
-      - uses: "actions/setup-node@v4"
+      - uses: "actions/checkout@v7"
+      - uses: "pnpm/action-setup@v6"
+      - uses: "actions/setup-node@v7"
         with:
           node-version: 24
           registry-url: "https://npm.pkg.github.com"
@@ -87,9 +87,9 @@ jobs:
       matrix:
         cluster: [dev-gcp]
     steps:
-      - uses: "actions/checkout@v4"
+      - uses: "actions/checkout@v7"
       - name: "Deploy to dev"
-        uses: "nais/deploy/actions/deploy@v2"
+        uses: "nais/deploy/actions/deploy@v3"
         env:
           CLUSTER: ${{ matrix.cluster }}
           RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
@@ -108,9 +108,9 @@ jobs:
       matrix:
         cluster: [prod-gcp]
     steps:
-      - uses: "actions/checkout@v4"
+      - uses: "actions/checkout@v7"
       - name: "Deploy to prod"
-        uses: "nais/deploy/actions/deploy@v2"
+        uses: "nais/deploy/actions/deploy@v3"
         env:
           CLUSTER: ${{ matrix.cluster }}
           RESOURCE: nais/${{ matrix.cluster }}/nais.yaml
